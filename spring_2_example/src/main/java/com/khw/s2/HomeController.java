@@ -45,6 +45,7 @@ public class HomeController {
 	}
 	@RequestMapping("member/joinProcess")
 	public String joinProcess(@ModelAttribute MemberDTO mdto){
+		mdto.getAge();
 		//파라미터 이름과 매개변수 이름을 같게해주면 써줄 필요 없음 
 		//dto에 선언된 파라미터 이름과 같아야함... 
 		//dto의 멤버변수는 private이며 get,set이 존재해애함. and 기본생성자가 있어야함
