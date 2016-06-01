@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.khw.dao.MemberDAO;
 import com.khw.dto.MemberDTO;
+import com.khw.member.ServiceImpl;
 
 @Controller
 @RequestMapping("/member/*")
@@ -35,8 +36,9 @@ public class MemberController {
 	@RequestMapping(value="/login", method =  RequestMethod.POST)
 	public String login(@ModelAttribute MemberDTO dto,HttpSession session,RedirectAttributes redirect)
 	{
-		MemberDAO dao=new MemberDAO();
-		dto=dao.loginCheck(dto);
+		ServiceImpl si = new ServiceImpl();
+		dto=si.login(dto);
+		
 		String path="";
 		if(dto!=null)
 		{
