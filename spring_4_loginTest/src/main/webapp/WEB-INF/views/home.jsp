@@ -11,11 +11,15 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
-<c:if test="${member.id == null }">
+<c:if test="${msg != null }">
+<p>${msg}</p>
+</c:if>
+
+<c:if test="${member == null }">
 <p><a href="./member/login">Login</a></p>
 <p><a href="./member/join">Join</a></p>
 </c:if>
-<c:if test="${member.id != null }">
+<c:if test="${member != null }">
 ${member.name}님 로그인중
 <p><a href="./member/logout">Logout</a></p>
 </c:if>

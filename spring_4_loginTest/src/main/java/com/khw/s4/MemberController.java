@@ -1,11 +1,14 @@
 package com.khw.s4;
 
-import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.khw.dao.MemberDAO;
 import com.khw.dto.MemberDTO;
@@ -15,53 +18,62 @@ import com.khw.dto.MemberDTO;
 public class MemberController {
 	
 	@RequestMapping("/logout")
-	public String logout(HttpServletRequest request){
+	public String logout(HttpSession session,RedirectAttributes redirect)
+	{
 		System.out.println("로그 아웃!!");
-		HttpSession session=request.getSession();
+		redirect.addFlashAttribute("msg", "로그아웃 성공");
 		session.invalidate();
 		return "redirect:/";
 	}
 	
 	@RequestMapping(value="/login", method =  RequestMethod.GET)
-	public void login(){
+	public void login()
+	{
 		
 	}
 	
 	@RequestMapping(value="/login", method =  RequestMethod.POST)
-	public String login(MemberDTO dto,HttpServletRequest request){
+	public String login(@ModelAttribute MemberDTO dto,HttpSession session,RedirectAttributes redirect)
+	{
 		MemberDAO dao=new MemberDAO();
 		dto=dao.loginCheck(dto);
 		String path="";
-		if(dto!=null){
+		if(dto!=null)
+		{
 			System.out.println("로그인 성공");
-			HttpSession session=request.getSession();
-			System.out.println(dto.getId());
-			System.out.println(dto.getName());
 			session.setAttribute("member",dto);
+			redirect.addFlashAttribute("msg", "로그인 성공"); //redirect로 값을 넘겨주고 싶을때..
 			path="redirect:/";
-		}else{
+		}
+		else
+		{
 			System.out.println("로그인 실패");
-			path="/member/login";
+			path="member/login";
 		}
 		return path;
 	}
 	
 	@RequestMapping(value="/join", method =  RequestMethod.GET)
-	public void join(){
+	public void join()
+	{
 		
 	}
 	
 	@RequestMapping(value="/join", method =  RequestMethod.POST)
-	public String join(MemberDTO dto){
+	public String join(MemberDTO dto)
+	{
 		MemberDAO dao=new MemberDAO();
 		int result=dao.insertMember(dto);
 		String path="";
-		if(result>0){
+		if(result>0)
+		{
 			System.out.println("가입 성공");
 			path="redirect:/";
-		}else{
+		}
+		else
+		{
 			System.out.println("가입 실패");
-			path="/member/join";
+			path="member/join";
 		}
 		
 		return path;

@@ -14,37 +14,48 @@ public class MemberDAO {
 	private PreparedStatement st=null;
 	private ResultSet rs=null;
 	
-	public MemberDTO loginCheck(MemberDTO dto){
+	public MemberDTO loginCheck(MemberDTO dto)
+	{
 		Connection con=DBConnector.getConnect();
 		String sql="select * from member where id=? and pw=?";
-		try {
+		try 
+		{
 			st=con.prepareStatement(sql);
 			st.setString(1, dto.getId());
 			st.setString(2, dto.getPw());
 			
 			rs=st.executeQuery();
-			if(rs.next()){
+			if(rs.next())
+			{
 				dto.setId(rs.getString("id"));
 				dto.setName(rs.getString("name"));
 				dto.setAge(rs.getInt("age"));
-			}else{
+			}
+			else
+			{
 				dto=null;
 			}
 			
-		} catch (SQLException e) {
+		} 
+		catch (SQLException e) 
+		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
+		}
+		finally
+		{
 			DBConnector.disConnect(rs, st, con);
 		}
 		
 		return dto;
 	}
 	
-	public int insertMember(MemberDTO dto){
+	public int insertMember(MemberDTO dto)
+	{
 		Connection con=DBConnector.getConnect();
 		String sql="insert into member values(?,?,?,?)";
-		try {
+		try 
+		{
 			st=con.prepareStatement(sql);
 			st.setString(1, dto.getId());
 			st.setString(2, dto.getPw());
@@ -52,10 +63,14 @@ public class MemberDAO {
 			st.setInt(4, dto.getAge());
 			
 			result=st.executeUpdate();
-		} catch (SQLException e) {
+		} 
+		catch (SQLException e)
+		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
+		}
+		finally
+		{
 			DBConnector.disConnect(st, con);
 		}
 		
