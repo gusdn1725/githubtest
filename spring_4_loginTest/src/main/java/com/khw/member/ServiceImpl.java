@@ -2,6 +2,8 @@ package com.khw.member;
 
 
 
+import javax.inject.Inject;
+
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.khw.dao.MemberDAO;
@@ -10,11 +12,23 @@ import com.khw.service.Service;
 
 public class ServiceImpl implements Service {
 	
-	MemberDAO dao;
+	
+	private MemberDAO dao;
+	
+	public MemberDAO getDao() {
+		return dao;
+	}
+
+	public void setDao(MemberDAO dao) {
+		this.dao = dao;
+	}
+
+	
+	/*------------------------------------------------------------------------------------------------------------------------*/
 	
 	@Override
 	public MemberDTO login(MemberDTO dto) {
-		
+		System.out.println(dto.getId());
 		dto=dao.loginCheck(dto);
 		
 		return dto;

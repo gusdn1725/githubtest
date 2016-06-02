@@ -15,7 +15,7 @@ public class MemberDAO {
 	private ResultSet rs=null;
 	
 	public MemberDTO loginCheck(MemberDTO dto)
-	{
+	{	System.out.println(dto.getId());
 		Connection con=DBConnector.getConnect();
 		String sql="select * from member where id=? and pw=?";
 		try 

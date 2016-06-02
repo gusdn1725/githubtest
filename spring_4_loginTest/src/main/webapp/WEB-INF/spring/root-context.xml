@@ -4,5 +4,10 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="memberDAO" class="com.khw.dao.MemberDAO"></bean>
+	
+	<bean id="si" class="com.khw.member.ServiceImpl">
+		<property name="dao" ref="memberDAO"></property><!-- si를 inject하면 si안의 xml로 선언한 객체도 자동으로 객체 생성 해줌  -->
+	</bean>
 		
 </beans>

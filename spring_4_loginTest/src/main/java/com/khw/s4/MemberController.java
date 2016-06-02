@@ -1,6 +1,7 @@
 package com.khw.s4;
 
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,8 @@ import com.khw.service.Service;
 @Controller
 @RequestMapping("/member/*")
 public class MemberController {
+	
+	@Inject
 	private Service si;
 	
 	@RequestMapping("/logout")
@@ -38,9 +41,9 @@ public class MemberController {
 	@RequestMapping(value="/login", method =  RequestMethod.POST)
 	public String login(@ModelAttribute MemberDTO dto,HttpSession session,RedirectAttributes redirect)
 	{
+		System.out.println("서비스 객체 "+si);
 		String path=null;
 		dto=si.login(dto);
-		
 		if(dto!=null)
 		{
 			System.out.println("로그인 성공");
