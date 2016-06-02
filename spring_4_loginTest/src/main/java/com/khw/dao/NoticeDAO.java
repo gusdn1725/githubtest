@@ -18,19 +18,35 @@ public class NoticeDAO implements NoticeDaoService {
 	private int result = 0;
 	private int perPage = 10;
 	
-	
-	
-	public DBConnector getDbConnector() {
-		return dbConnector;
-	}
-
-
-
 	public void setDbConnector(DBConnector dbConnector) {
 		this.dbConnector = dbConnector;
 	}
 
-
+	@Override
+	public NoticeDTO viewNotice(int num) {
+		System.out.println("dao 게시글 번호 : "+num);
+		Connection con=dbConnector.getConnect();
+		String sql="select * from notice where num=?";
+		NoticeDTO dto = new NoticeDTO();
+		try {
+			st = con.prepareStatement(sql);
+			st.setInt(1, num);
+			
+			rs=st.executeQuery();
+			
+			if(rs.next()){
+				dto.setId(rs.getString("id"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContents(rs.getString("contents"));
+			}else{
+				dto = null;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return dto;
+	}
 
 	@Override
 	public ArrayList<NoticeDTO> listNotice(int curPage) {

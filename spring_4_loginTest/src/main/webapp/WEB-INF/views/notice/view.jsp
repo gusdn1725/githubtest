@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<table align="center">
+		<tr><td>작성자</td><td>${view.id}</td></tr>
+		<tr><td>제   목</td><td>${view.title}</td></tr>
+		<tr><td>내   용</td><td>${view.contents}</td></tr>
+	</table>
 </body>
 </html>

@@ -1,8 +1,9 @@
 package com.khw.dto;
 
+
 import java.sql.Date;
 
-public class NoticeDTO {
+public class NoticeDTO{
 
 	private int num;
 	private String title;

@@ -12,7 +12,7 @@
   <table align="center">
   <tr><td>번호</td><td>제목</td><td>글쓴이</td><td>날짜</td></tr>
   <c:forEach items="${list}" var="ar">
-  	<tr><td>${ar.num}</td><td>${ar.title}</td><td>${ar.id}</td><td>${ar.reg_date }</td></tr>	
+  	<tr><td>${ar.num}</td><td><a href="./view?num=${ar.num}">${ar.title}</a></td><td>${ar.id}</td><td>${ar.reg_date }</td></tr>	
   </c:forEach>
   
   </table>

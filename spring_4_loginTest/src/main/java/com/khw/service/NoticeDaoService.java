@@ -9,5 +9,7 @@ public interface NoticeDaoService {
 	public ArrayList<NoticeDTO> listNotice(int curPage);
 	
 	public int writeNotice(NoticeDTO dto);
+	
+	public NoticeDTO viewNotice(int num);
 
 }

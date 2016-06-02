@@ -2,7 +2,10 @@ package com.khw.notice;
 
 import java.util.ArrayList;
 
+import org.springframework.ui.Model;
+
 import com.khw.dao.NoticeDAO;
+import com.khw.dto.MemberDTO;
 import com.khw.dto.NoticeDTO;
 import com.khw.service.NoticeService;
 
@@ -21,11 +24,11 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public ArrayList<NoticeDTO> list(int curPage) {
+	public void list(int curPage,Model model) {
 		// TODO Auto-generated method stub
 		ArrayList<NoticeDTO> ar = dao.listNotice(curPage);
+		model.addAttribute("list", ar);
 		
-		return ar;
 	}
 
 	@Override
@@ -42,6 +45,14 @@ public class NoticeServiceImpl implements NoticeService {
 		}
 		
 		return path;
+	}
+	
+	@Override
+	public void view(int num,Model model) {
+		// TODO Auto-generated method stub
+		System.out.println("서비스 게시글 번호 : "+num);
+		NoticeDTO dto = dao.viewNotice(num);
+		model.addAttribute("view", dto);
 	}
 
 	@Override

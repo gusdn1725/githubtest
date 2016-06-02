@@ -22,8 +22,7 @@ public class NoticeController {
 	
 	@RequestMapping(value="/list" , method = RequestMethod.GET)
 	public void list(@RequestParam("curPage") int curPage,Model model){
-		ArrayList<NoticeDTO> ar = ns.list(curPage);
-		model.addAttribute("list", ar);
+		ns.list(curPage,model);
 	}
 	
 	@RequestMapping(value="/write" , method = RequestMethod.GET)
@@ -34,7 +33,13 @@ public class NoticeController {
 	@RequestMapping(value="/write" , method = RequestMethod.POST)
 	public String write(NoticeDTO dto){
 		String path=ns.write(dto);
-		System.out.println(path);
 		return path;
 	}
+	
+	@RequestMapping(value="/view" , method = RequestMethod.GET)
+	public void view(@RequestParam("num")int num,Model model){
+		System.out.println("게시글 번호 : "+num);
+		ns.view(num,model);
+	}
+
 }
