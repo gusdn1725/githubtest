@@ -76,5 +76,54 @@ public class MemberDAO {
 		
 		return result;
 	}
+	
+	public int updateMember(MemberDTO dto)
+	{
+		Connection con=DBConnector.getConnect();
+		String sql = "update member set name=?, age=? where id=?";
+		try
+		{
+			st=con.prepareStatement(sql);
+			st.setString(1, dto.getName());
+			st.setInt(2, dto.getAge());
+			st.setString(3, dto.getId());
+			
+			result=st.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			DBConnector.disConnect(st, con);
+		}
+		
+		return result;
+	}
+	
+	public int deleteMember(MemberDTO dto)
+	{
+		Connection con = DBConnector.getConnect();
+		String sql = "delete member where id=? and pw=?";
+		try 
+		{
+			st = con.prepareStatement(sql);
+			st.setString(1, dto.getId());
+			st.setString(2, dto.getPw());
+			result=st.executeUpdate();
+		} 
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally
+		{
+			DBConnector.disConnect(st, con);
+		}
+		
+		return result;
+	}
 
 }

@@ -1,5 +1,7 @@
 package com.khw.service;
 
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.khw.dto.MemberDTO;
 
 public interface Service {
@@ -7,11 +9,11 @@ public interface Service {
 	public MemberDTO login(MemberDTO memberDTO);
 	
 	//회원가입
-	public void join(MemberDTO memberDTO);
+	public int join(MemberDTO memberDTO);
 
 	//회원수정
-	public void update(MemberDTO memberDTO);
+	public int update(MemberDTO memberDTO);
 	
 	//회원삭제
-	public void delete(MemberDTO memberDTO);
+	public int delete(MemberDTO memberDTO);
 }

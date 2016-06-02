@@ -21,6 +21,8 @@
 </c:if>
 <c:if test="${member != null }">
 ${member.name}님 로그인중
+<p><a href="./member/update">MemberUpdate</a></p>
+<p><a href="./member/delete">MemberDelete</a></p>
 <p><a href="./member/logout">Logout</a></p>
 </c:if>
 </body>

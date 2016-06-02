@@ -18,6 +18,7 @@ import com.khw.service.Service;
 @Controller
 @RequestMapping("/member/*")
 public class MemberController {
+	private Service si;
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session,RedirectAttributes redirect)
@@ -37,15 +38,14 @@ public class MemberController {
 	@RequestMapping(value="/login", method =  RequestMethod.POST)
 	public String login(@ModelAttribute MemberDTO dto,HttpSession session,RedirectAttributes redirect)
 	{
-		Service si = new ServiceImpl();
+		String path=null;
 		dto=si.login(dto);
 		
-		String path="";
 		if(dto!=null)
 		{
 			System.out.println("로그인 성공");
 			session.setAttribute("member",dto);
-			redirect.addFlashAttribute("msg", "로그인 성공"); //redirect로 값을 넘겨주고 싶을때..
+			redirect.addFlashAttribute("msg", "로그인 성공");
 			path="redirect:/";
 		}
 		else
@@ -65,9 +65,9 @@ public class MemberController {
 	@RequestMapping(value="/join", method =  RequestMethod.POST)
 	public String join(MemberDTO dto)
 	{
-		MemberDAO dao=new MemberDAO();
-		int result=dao.insertMember(dto);
-		String path="";
+		int result=si.join(dto);
+		String path=null;
+		
 		if(result>0)
 		{
 			System.out.println("가입 성공");
@@ -79,6 +79,49 @@ public class MemberController {
 			path="member/join";
 		}
 		
+		
 		return path;
+	}
+	
+	@RequestMapping(value="/update", method = RequestMethod.GET)
+	public void update()
+	{
+		
+	}
+	
+	@RequestMapping(value="/update", method = RequestMethod.POST)
+	public String update(MemberDTO dto,HttpSession session)
+	{
+		int result = si.update(dto);
+		
+		if(result>0)
+		{
+			session.setAttribute("member", dto);
+			System.out.println("업데이트 성공");
+			return "redirect:/";
+		}else{
+			System.out.println("업데이트 실패");
+			return "member/update";
+		}
+	}
+	
+	@RequestMapping(value="/delete", method = RequestMethod.GET)
+	public void delete()
+	{
+		
+	}
+	@RequestMapping(value="/delete", method = RequestMethod.POST)
+	public String delete(MemberDTO dto)
+	{
+		int result = si.delete(dto);
+		
+		if(result>0)
+		{
+			System.out.println("삭제 성공");
+			return "redirect:/";
+		}else{
+			System.out.println("삭제 실패");
+			return "member/delete";
+		}
 	}
 }
