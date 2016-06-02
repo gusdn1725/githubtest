@@ -114,12 +114,13 @@ public class MemberController {
 		
 	}
 	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public String delete(MemberDTO dto)
+	public String delete(MemberDTO dto,HttpSession session)
 	{
 		int result = si.delete(dto);
 		
 		if(result>0)
 		{
+			session.invalidate();
 			System.out.println("삭제 성공");
 			return "redirect:/";
 		}else{

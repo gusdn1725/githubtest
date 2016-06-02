@@ -8,12 +8,45 @@ import java.sql.SQLException;
 
 public class DBConnector {
 
-	private static String user="user04";
-	private static String password="user04";
-	private static String url="jdbc:oracle:thin:@localhost:1521:xe";
-	private static String driver="oracle.jdbc.driver.OracleDriver";
+	private String user;
+	private String password;
+	private String url;
+	private String driver;
 	
-	public static Connection getConnect(){
+	
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getDriver() {
+		return driver;
+	}
+
+	public void setDriver(String driver) {
+		this.driver = driver;
+	}
+
+	public Connection getConnect(){
 		Connection con=null;
 		try {
 			Class.forName(driver);
@@ -26,7 +59,7 @@ public class DBConnector {
 		return con;
 	}
 	
-	public static void disConnect(ResultSet rs,PreparedStatement st,Connection con){
+	public void disConnect(ResultSet rs,PreparedStatement st,Connection con){
 		try {
 			rs.close();
 			st.close();
@@ -38,7 +71,7 @@ public class DBConnector {
 		
 	}
 	
-	public static void disConnect(PreparedStatement st,Connection con){
+	public void disConnect(PreparedStatement st,Connection con){
 		try {
 			st.close();
 			con.close();

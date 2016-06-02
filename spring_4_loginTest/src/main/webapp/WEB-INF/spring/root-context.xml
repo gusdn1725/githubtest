@@ -4,10 +4,31 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<bean id="memberDAO" class="com.khw.dao.MemberDAO"></bean>
+	
+	<!-- DB -->
+	<bean id="DBConnector" class="com.khw.util.DBConnector">
+		<property name="user" value="user04"></property>
+		<property name="password" value="user04"></property>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+		<property name="driver" value="oracle.jdbc.driver.OracleDriver"></property>
+	</bean>
+	<!--member -->
+	<bean id="memberDAO" class="com.khw.dao.MemberDAO">
+		<property name="dbConnector" ref="DBConnector"></property>
+	</bean>
 	
 	<bean id="si" class="com.khw.member.ServiceImpl">
 		<property name="dao" ref="memberDAO"></property><!-- si를 inject하면 si안의 xml로 선언한 객체도 자동으로 객체 생성 해줌  -->
 	</bean>
-		
+	<!--Notice -->
+	<bean id="noticeDAO" class="com.khw.dao.NoticeDAO">
+		<property name="dbConnector" ref="DBConnector"></property>
+	</bean>
+	
+	<bean id="ns" class="com.khw.notice.NoticeServiceImpl">
+		<property name="dao" ref="noticeDAO"></property>
+	</bean>
+	
+	
+	
 </beans>

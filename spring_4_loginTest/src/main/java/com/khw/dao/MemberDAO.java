@@ -9,14 +9,24 @@ import com.khw.dto.MemberDTO;
 import com.khw.util.DBConnector;
 
 public class MemberDAO {
-	
+	private DBConnector dbConnector;
 	private int result=0;
 	private PreparedStatement st=null;
 	private ResultSet rs=null;
 	
+	
+	
+	public DBConnector getDbConnector() {
+		return dbConnector;
+	}
+
+	public void setDbConnector(DBConnector dbConnector) {
+		this.dbConnector = dbConnector;
+	}
+
 	public MemberDTO loginCheck(MemberDTO dto)
 	{	System.out.println(dto.getId());
-		Connection con=DBConnector.getConnect();
+		Connection con=dbConnector.getConnect();
 		String sql="select * from member where id=? and pw=?";
 		try 
 		{
@@ -44,7 +54,7 @@ public class MemberDAO {
 		}
 		finally
 		{
-			DBConnector.disConnect(rs, st, con);
+			dbConnector.disConnect(rs, st, con);
 		}
 		
 		return dto;
@@ -52,7 +62,7 @@ public class MemberDAO {
 	
 	public int insertMember(MemberDTO dto)
 	{
-		Connection con=DBConnector.getConnect();
+		Connection con=dbConnector.getConnect();
 		String sql="insert into member values(?,?,?,?)";
 		try 
 		{
@@ -71,7 +81,7 @@ public class MemberDAO {
 		}
 		finally
 		{
-			DBConnector.disConnect(st, con);
+			dbConnector.disConnect(st, con);
 		}
 		
 		return result;
@@ -79,7 +89,7 @@ public class MemberDAO {
 	
 	public int updateMember(MemberDTO dto)
 	{
-		Connection con=DBConnector.getConnect();
+		Connection con=dbConnector.getConnect();
 		String sql = "update member set name=?, age=? where id=?";
 		try
 		{
@@ -96,7 +106,7 @@ public class MemberDAO {
 		}
 		finally
 		{
-			DBConnector.disConnect(st, con);
+			dbConnector.disConnect(st, con);
 		}
 		
 		return result;
@@ -104,7 +114,7 @@ public class MemberDAO {
 	
 	public int deleteMember(MemberDTO dto)
 	{
-		Connection con = DBConnector.getConnect();
+		Connection con = dbConnector.getConnect();
 		String sql = "delete member where id=? and pw=?";
 		try 
 		{
@@ -120,7 +130,7 @@ public class MemberDAO {
 		}
 		finally
 		{
-			DBConnector.disConnect(st, con);
+			dbConnector.disConnect(st, con);
 		}
 		
 		return result;

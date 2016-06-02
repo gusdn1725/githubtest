@@ -3,6 +3,7 @@ package com.khw.member;
 
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -67,8 +68,6 @@ public class ServiceImpl implements Service {
 
 	@Override
 	public int delete(MemberDTO memberDTO) {
-		
-
 		int result=dao.deleteMember(memberDTO);
 		
 		return result;
