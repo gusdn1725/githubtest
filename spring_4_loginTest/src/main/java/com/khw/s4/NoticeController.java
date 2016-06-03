@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.khw.dto.NoticeDTO;
-import com.khw.service.NoticeService;
+import com.khw.service.BoardService;
 
 @Controller
 @RequestMapping("/notice/*")
 public class NoticeController {
 	
 	@Inject
-	NoticeService ns;
+	BoardService ns;
 	
 	@RequestMapping(value="/list" , method = RequestMethod.GET)
 	public void list(@RequestParam("curPage") int curPage,Model model){

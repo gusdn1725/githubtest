@@ -7,9 +7,9 @@ import org.springframework.ui.Model;
 import com.khw.dao.NoticeDAO;
 import com.khw.dto.MemberDTO;
 import com.khw.dto.NoticeDTO;
-import com.khw.service.NoticeService;
+import com.khw.service.BoardService;
 
-public class NoticeServiceImpl implements NoticeService {
+public class NoticeServiceImpl implements BoardService {
 	
 	private NoticeDAO dao;
 	

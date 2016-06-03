@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 
 import com.khw.dto.NoticeDTO;
 
-public interface NoticeService {
+public interface BoardService {
 	
 	//리스트
 	public void list(int curPage,Model model);
