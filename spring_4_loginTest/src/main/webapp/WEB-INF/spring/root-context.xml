@@ -13,13 +13,13 @@
 		<property name="driver" value="oracle.jdbc.driver.OracleDriver"></property>
 	</bean>
 	<!--member -->
-	<bean id="memberDAO" class="com.khw.dao.MemberDAO">
+	<!-- <bean id="memberDAO" class="com.khw.dao.MemberDAO">
 		<property name="dbConnector" ref="DBConnector"></property>
 	</bean>
 	
 	<bean id="si" class="com.khw.member.ServiceImpl">
-		<property name="dao" ref="memberDAO"></property><!-- si를 inject하면 si안의 xml로 선언한 객체도 자동으로 객체 생성 해줌  -->
-	</bean>
+		<property name="dao" ref="memberDAO"></property>si를 inject하면 si안의 xml로 선언한 객체도 자동으로 객체 생성 해줌 
+	</bean> -->
 	<!--Notice -->
 	<bean id="noticeDAO" class="com.khw.dao.NoticeDAO">
 		<property name="dbConnector" ref="DBConnector"></property>

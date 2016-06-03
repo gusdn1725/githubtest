@@ -2,18 +2,19 @@ package com.khw.member;
 
 
 
-import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Component;
 
 import com.khw.dao.MemberDAO;
 import com.khw.dto.MemberDTO;
 import com.khw.service.Service;
 
+@Component
 public class ServiceImpl implements Service {
 	
-	
+	@Inject
 	private MemberDAO dao;
 	
 	public MemberDAO getDao() {

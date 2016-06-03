@@ -5,25 +5,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Component;
+
 import com.khw.dto.MemberDTO;
 import com.khw.util.DBConnector;
 
+
+@Component //객체 생성 어노테이션
 public class MemberDAO {
+	
+	@Inject
 	private DBConnector dbConnector;
+	
 	private int result=0;
 	private PreparedStatement st=null;
 	private ResultSet rs=null;
 	
-	
-	
-	public DBConnector getDbConnector() {
-		return dbConnector;
-	}
-
-	public void setDbConnector(DBConnector dbConnector) {
-		this.dbConnector = dbConnector;
-	}
-
 	public MemberDTO loginCheck(MemberDTO dto)
 	{	System.out.println(dto.getId());
 		Connection con=dbConnector.getConnect();
