@@ -4,27 +4,15 @@ package com.khw.member;
 
 
 import javax.inject.Inject;
-
-import org.springframework.stereotype.Component;
-
 import com.khw.dao.MemberDAO;
 import com.khw.dto.MemberDTO;
 import com.khw.service.Service;
 
-@Component
+@org.springframework.stereotype.Service
 public class ServiceImpl implements Service {
 	
 	@Inject
 	private MemberDAO dao;
-	
-	public MemberDAO getDao() {
-		return dao;
-	}
-
-	public void setDao(MemberDAO dao) {
-		this.dao = dao;
-	}
-
 	
 	/*------------------------------------------------------------------------------------------------------------------------*/
 	
@@ -72,6 +60,19 @@ public class ServiceImpl implements Service {
 		int result=dao.deleteMember(memberDTO);
 		
 		return result;
+	}
+	
+	@Override
+	public String idCheck(String id) {
+		System.out.println("서비스 "+id);
+		int result = dao.idCheck(id);
+		
+		if(result==1){
+			return "이미 있는 아이디 입니다.";
+		}else{
+			return "사용가능한 아이디 입니다";
+		}
+		
 	}
 
 }

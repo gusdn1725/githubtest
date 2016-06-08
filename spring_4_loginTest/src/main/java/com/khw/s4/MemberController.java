@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.khw.dao.MemberDAO;
@@ -17,10 +18,10 @@ import com.khw.member.ServiceImpl;
 import com.khw.service.Service;
 
 @Controller
-@RequestMapping("/member/*")
+@RequestMapping("/member/**")
 public class MemberController {
 	
-	@Inject
+	
 	private Service si;
 	
 	@RequestMapping("/logout")
@@ -127,5 +128,14 @@ public class MemberController {
 			System.out.println("삭제 실패");
 			return "member/delete";
 		}
+	}
+	@RequestMapping(value = "/idcheck", method = RequestMethod.POST)
+	@ResponseBody
+	public String idCheck(String id){
+		System.out.println("컨트롤러 "+id);
+		String msg = si.idCheck(id);
+		
+		return msg;
+		
 	}
 }

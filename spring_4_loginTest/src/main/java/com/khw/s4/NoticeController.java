@@ -17,8 +17,8 @@ import com.khw.service.BoardService;
 @RequestMapping("/notice/*")
 public class NoticeController {
 	
-	@Inject
-	BoardService ns;
+
+	private BoardService ns;
 	
 	@RequestMapping(value="/list" , method = RequestMethod.GET)
 	public void list(@RequestParam("curPage") int curPage,Model model){

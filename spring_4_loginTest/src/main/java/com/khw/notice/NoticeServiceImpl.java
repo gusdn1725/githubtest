@@ -2,6 +2,7 @@ package com.khw.notice;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
 import com.khw.dao.NoticeDAO;
@@ -9,6 +10,7 @@ import com.khw.dto.MemberDTO;
 import com.khw.dto.NoticeDTO;
 import com.khw.service.BoardService;
 
+@Component
 public class NoticeServiceImpl implements BoardService {
 	
 	private NoticeDAO dao;

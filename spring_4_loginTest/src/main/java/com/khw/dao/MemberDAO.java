@@ -8,12 +8,13 @@ import java.sql.SQLException;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.khw.dto.MemberDTO;
 import com.khw.util.DBConnector;
 
 
-@Component //객체 생성 어노테이션
+@Repository //객체 생성 어노테이션
 public class MemberDAO {
 	
 	@Inject
@@ -22,6 +23,31 @@ public class MemberDAO {
 	private int result=0;
 	private PreparedStatement st=null;
 	private ResultSet rs=null;
+	
+	public int idCheck(String id)
+	{
+		System.out.println("dao"+id);
+		Connection con = dbConnector.getConnect();
+		String sql = "select * from member where id=?";
+		try {
+			st = con.prepareStatement(sql);
+			st.setString(1, id);
+			
+			rs = st.executeQuery();
+			if(rs.next()){
+				result = 1;
+			}else{
+				result = 0;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			dbConnector.disConnect(rs, st, con);
+		}
+		
+		return result;
+	}
 	
 	public MemberDTO loginCheck(MemberDTO dto)
 	{	System.out.println(dto.getId());

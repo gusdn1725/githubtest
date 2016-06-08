@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
@@ -21,14 +23,15 @@
 		<property name="dao" ref="memberDAO"></property>si를 inject하면 si안의 xml로 선언한 객체도 자동으로 객체 생성 해줌 
 	</bean> -->
 	<!--Notice -->
-	<bean id="noticeDAO" class="com.khw.dao.NoticeDAO">
+	<!-- <bean id="noticeDAO" class="com.khw.dao.NoticeDAO">
 		<property name="dbConnector" ref="DBConnector"></property>
 	</bean>
 	
 	<bean id="ns" class="com.khw.notice.NoticeServiceImpl">
 		<property name="dao" ref="noticeDAO"></property>
-	</bean>
-	
-	
+	</bean> -->
+	<context:component-scan base-package="com.khw.notice"></context:component-scan>
+	<context:component-scan base-package="com.khw.member"></context:component-scan>
+	<context:component-scan base-package="com.khw.dao"></context:component-scan>
 	
 </beans>

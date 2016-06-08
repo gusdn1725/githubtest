@@ -6,12 +6,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Component;
+
 import com.khw.dto.NoticeDTO;
 import com.khw.service.NoticeDaoService;
 import com.khw.util.DBConnector;
 
+@Component
 public class NoticeDAO implements NoticeDaoService {
 
+	@Inject
 	private DBConnector dbConnector;
 	private PreparedStatement st = null;
 	private ResultSet rs = null;

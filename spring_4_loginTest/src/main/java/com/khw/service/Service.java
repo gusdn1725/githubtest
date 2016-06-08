@@ -16,4 +16,7 @@ public interface Service {
 	
 	//회원삭제
 	public int delete(MemberDTO memberDTO);
+	
+	//ID확인
+	public String idCheck(String id);
 }
